@@ -1,0 +1,38 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: learn-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/TodayIsSunShine/learn-spring-cloud.git
+          search-paths: config-repo
+          username: ENC(CjNclvc+uOG4N8/OwAbTKoLdP4FHjA0o)   #github账号
+          password: ENC(dRl56jOR/PlTSIX1ObmyRmegDglXv6tS)   #github密码
+    bus:
+      trace:
+        enabled: true  #开启消息跟踪
+  rabbitmq:
+    host: 106.13.162.44
+    username: admin
+    password: admin-rabbitmq
+    port: 5672
+jasypt:
+  encryptor:
+    password: qianjiu
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    appname: learn-config-server
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

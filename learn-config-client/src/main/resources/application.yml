@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: learn-config-client
+server:
+  port: 8002
+

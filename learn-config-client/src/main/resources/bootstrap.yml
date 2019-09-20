@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    config:
+      label: master
+      name: neo-config
+      profile: dev
+      discovery:
+        service-id: learn-config-server   #指定server端的name,也就是server端spring.application.name的值
+        enabled: true                     #开启Config服务发现支持
+    bus:
+      trace:
+        enabled: true   #开启消息追踪
+  rabbitmq:
+    host: 106.13.162.44
+    username: admin
+    password: admin-rabbitmq
+    port: 5672
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/  #指向注册中心的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #关闭安全认证,暴露所有url
