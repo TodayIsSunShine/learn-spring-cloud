@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <!--读取配置中心的属性-->
     <springProperty scope="context" name="name" source="spring.application.name"/>
 
-    <property name="LOG_HOME" value="./logs" />
-    <property name="CONSOLE_LOG_PATTERN_FILE" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %clr(${LOG_LEVEL_PATTERN:-%5p}) %logger{50}:%L - %msg%n"/>
+    <property name="LOG_HOME" value="./logs"/>
+    <property name="CONSOLE_LOG_PATTERN_FILE"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %clr(${LOG_LEVEL_PATTERN:-%5p}) %logger{50}:%L - %msg%n"/>
 
 
     <!--输出到控制台-->
@@ -23,7 +24,7 @@
     </appender>
 
     <!--输出到文件-->
-    <appender name="fileLog"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <maxFileSize>150MB</maxFileSize>
@@ -36,8 +37,8 @@
     </appender>
 
     <root level="info">
-        <appender-ref ref="console" />
-        <appender-ref ref="fileLog" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="fileLog"/>
     </root>
 
     <logger name="java.sql.Connection" level="INFO"/>

@@ -17,4 +17,9 @@ public class ConsumerController {
     public String hello(@PathVariable("name") String name) {
         return helloService.hello(name);
     }
+
+    @RequestMapping("/world/{name}")
+    public String world(@PathVariable("name") String name) {
+        return helloService.world(name);
+    }
 }

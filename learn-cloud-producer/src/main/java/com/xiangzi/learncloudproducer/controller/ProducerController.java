@@ -15,6 +15,11 @@ public class ProducerController {
 
     @RequestMapping("/hello")
     public String hello(@RequestParam String name) {
-        return "hello" + name + ",this is first message";
+        return "hello:" + name + ",this is first message";
+    }
+
+    @RequestMapping("/world")
+    public String world(@RequestParam String name) {
+        return "world:" + name + ",this is test message";
     }
 }

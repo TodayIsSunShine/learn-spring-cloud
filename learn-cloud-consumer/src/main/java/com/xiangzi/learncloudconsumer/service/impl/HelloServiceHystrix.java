@@ -16,4 +16,9 @@ public class HelloServiceHystrix implements HelloService {
     public String hello(@RequestParam("name") String name) {
         return "hello" + name + ", this message send failure";
     }
+
+    @Override
+    public String world(@RequestParam("name") String name) {
+        return "world" + name + ", this message send failure";
+    }
 }
