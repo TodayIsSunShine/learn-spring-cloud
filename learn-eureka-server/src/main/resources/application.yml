@@ -4,6 +4,10 @@ server:
 eureka:
   instance:
     appname: localhost
+    lease-expiration-duration-in-seconds: 30 #如果现在超过了5秒的间隔（默认是90秒）
+    lease-renewal-interval-in-seconds: 3 #设置心跳的时间间隔(默认30s)
+    prefer-ip-address: true #访问的路径变成ip地址
+    instance-id: eureka-server #在信息列表时显示主机名称
   client:
     fetch-registry: false
     register-with-eureka: false
@@ -13,3 +17,7 @@ eureka:
 spring:
   application:
     name: learn-eureka-server
+
+logging:
+  level:
+    com.netflix: warn

@@ -9,8 +9,21 @@ eureka:
 spring:
   application:
     name: learn-cloud-consumer
+  rabbitmq:
+    port: 5672
+    host: 106.13.162.44
+    username: admin
+    password: admin-rabbitmq
+    listener:
+      simple:
+        concurrency: 5  #最小的消费者数量
+        ## 手动ack确认
+        acknowledge-mode: manual  #表示消息确认方式，其有三种配置方式，分别是none、manual和auto；默认auto
+        max-concurrency: 10  #最大的消费者数量
+        prefetch: 1 #指定一个请求能处理多少个消息，如果有事务的话，必须大于等于transaction数量.
 logging:
   config: classpath:logback-spring.xml
 feign:
   hystrix:
     enabled: true
+
