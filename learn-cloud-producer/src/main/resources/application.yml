@@ -1,20 +1,30 @@
 server:
   port: 9000
+
 spring:
   application:
     name: learn-cloud-producer
+
   rabbitmq:
     host: 106.13.162.44
     username: admin
     password: admin-rabbitmq
-    virtual-host: /    #连接到rabbitMQ的vhost
     publisher-confirms: true #是否启用发布确认
     publisher-returns: true  #是否启动发布确认
     template:
       mandatory: true  #启用强制信息；默认false
     port: 5672
     connection-timeout: 2000 #连接超时，单位毫秒，0表示无穷大，不超时
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka/
+  instance:
+    hostname: 127.0.0.1   # 配置使用主机名注册服务
+    prefer-ip-address: true #优先使用ip地址进行注册服务
+    ip-address: 127.0.0.1
+
+logging:
+  level:
+    com.netflix: warn

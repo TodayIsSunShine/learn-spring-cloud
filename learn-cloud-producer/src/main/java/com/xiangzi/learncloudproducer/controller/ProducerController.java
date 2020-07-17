@@ -1,6 +1,6 @@
 package com.xiangzi.learncloudproducer.controller;
 
-import com.xiangzi.learncloudproducer.producer.RabbitmqSender;
+import com.xiangzi.learncloudproducer.producer.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,21 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProducerController {
 
     @Autowired
-    private RabbitmqSender rabbitmqSender;
+    private Producer producer;
 
-    @RequestMapping("/hello")
-    public String hello(@RequestParam String name) {
-        return "hello:" + name + ",this is first message";
-    }
-
-    @RequestMapping("/world")
-    public String world(@RequestParam String name) {
-        return "world:" + name + ",this is test message";
-    }
-
-    @RequestMapping("/test/send")
-    public String testSend(@RequestParam("message") String message) {
-        rabbitmqSender.sender(message);
+    @RequestMapping("/sendMessage")
+    public String testSend(@RequestParam("message") String message, @RequestParam("time") Long time) {
+        producer.send(message, time);
         return "success";
     }
 }
