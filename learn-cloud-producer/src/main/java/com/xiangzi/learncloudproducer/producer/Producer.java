@@ -31,6 +31,7 @@ public class Producer {
         };
         LOGGER.info("准备发送消息");
 
+        //调用了 convertAndSend 方法时会使用 MessageConvert 进行消息的序列化
         amqpTemplate.convertAndSend(RabbitmqConfig.my_demo_exchange, RabbitmqConfig.my_demo_dead_letter_routing_key, msg, processor);
     }
 }

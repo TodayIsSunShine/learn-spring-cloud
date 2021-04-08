@@ -37,8 +37,8 @@ public class RabbitmqReceiver {
             boolean multiple = false;
             if (messageStr.equals("hello")) {
                 long deliveryTag = message.getMessageProperties().getDeliveryTag();
-                //ACK,确认一条消息已经被消费,可以在队列删掉 这样以后就不会再发了 否则消息服务器以为这条消息没处理掉 后续还会在发
                 System.err.println("deliveryTag:" + deliveryTag);
+                //ACK,确认一条消息已经被消费,可以在队列删掉 这样以后就不会再发了 否则消息服务器以为这条消息没处理掉 后续还会在发
                 channel.basicAck(deliveryTag, multiple);
             }
 

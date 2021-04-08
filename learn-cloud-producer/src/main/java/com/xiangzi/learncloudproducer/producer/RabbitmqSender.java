@@ -5,6 +5,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 /**
  * 发送消息
  */
@@ -39,7 +41,7 @@ public class RabbitmqSender {
         //实现callback接口，消息达到broker后触发回调，确认消息是否正确到达exchange中
         rabbitTemplate.setConfirmCallback(confirmCallback);
         //消息唯一ID
-        String messageId = "123";
+        String messageId = UUID.randomUUID().toString();
         CorrelationData correlationData = new CorrelationData(messageId);
         rabbitTemplate.convertAndSend("order-exchange", "order.test", message, correlationData);
 

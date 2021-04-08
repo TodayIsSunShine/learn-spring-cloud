@@ -12,7 +12,7 @@ import java.io.IOException;
 @Component
 public class DeadLetterQueueConsumer {
 
-    @RabbitListener(queues = "my_demo_queue")
+    @RabbitListener(queues = "my_demo_queue") //用来监听队列里面的消息
     @RabbitHandler
     public void receive(Message message, Channel channel) throws IOException {
         String msg = new String(message.getBody());
