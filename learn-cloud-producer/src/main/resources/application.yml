@@ -6,15 +6,16 @@ spring:
     name: learn-cloud-producer
 
   rabbitmq:
-    host: 106.13.162.44
+    host: 39.99.248.217
     username: admin
     password: admin-rabbitmq
-    publisher-confirms: true #是否启用发布确认
-    publisher-returns: true  #是否启动发布确认
+    publisher-confirms: true #设置此属性配置可以确保消息成功发送到交换器
+    publisher-returns: true  #可以确保消息在未被队列接收时返回
     template:
-      mandatory: true  #启用强制信息；默认false
+      mandatory: true  #指定消息在没有被队列接收时是否强行退回还是直接丢弃,true或者false会忽略掉spring.rabbitmq.publisher-returns属性的值
     port: 5672
     connection-timeout: 2000 #连接超时，单位毫秒，0表示无穷大，不超时
+    virtual-host: /
 
 eureka:
   client:
