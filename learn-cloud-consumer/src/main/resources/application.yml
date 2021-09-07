@@ -16,7 +16,7 @@ spring:
     password: admin-rabbitmq
     listener:
       simple:
-#        concurrency: 5  #最小的消费者数量
+        concurrency: 5  #最小的消费者数量
         ## 手动ack确认
         acknowledge-mode: manual  #表示消息确认方式，其有三种配置方式，分别是none、manual和auto；默认auto
         max-concurrency: 10  #最大的消费者数量
