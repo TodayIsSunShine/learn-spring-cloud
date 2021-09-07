@@ -1,7 +1,5 @@
 package com.xiangzi.gatewaylimiter.entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -12,7 +10,6 @@ import java.security.spec.AlgorithmParameterSpec;
 
 
 public class AESEncrypter {
-    private static final Logger logger = LoggerFactory.getLogger(AESEncrypter.class);
     private static final byte[] iv = new byte[]{82, 22, 50, 44, -16, 124, -40, -114, -87, -40, 37, 23, -56, 23, -33, 75};
     private static final byte[] key = new byte[]{-42, 35, 67, -86, 19, 29, -11, 84, 94, 111, 75, -104, 71, 46, 86, -21, -119, 110, -11, -32, -28, 91, -33, -46, 99, 49, 2, 66, -101, -11, -8, 56};
 
@@ -33,7 +30,6 @@ public class AESEncrypter {
             ecipher.init(1, key, paramSpec);
             str = asHex(ecipher.doFinal(msg.getBytes("UTF-8")));
         } catch (Exception var7) {
-            logger.error(var7.toString());
         }
 
         return str;
@@ -51,7 +47,6 @@ public class AESEncrypter {
             dcipher.init(2, key, paramSpec);
             return new String(dcipher.doFinal(asBin(value)), "UTF-8");
         } catch (Exception var6) {
-            logger.error(var6.toString());
             return null;
         }
     }
@@ -94,8 +89,10 @@ public class AESEncrypter {
         System.out.println(decrypt("7f30abb47f457b3d6ba701f5b6c8607f"));*/
 //        System.out.println(encrypt("hbnuggets_read"));
 //        System.out.println(encrypt("j91LIS8x"));
-        System.out.println(decrypt("1e3d7b90415974867b66eee3ef09fdacb1bbfc01041899709807f94580f4d572"));
-        System.out.println(decrypt("1e3d7b90415974867b66eee3ef09fdac24f213ecc0bc5118be4c59a50c87494a"));
+//        System.out.println(decrypt("52680bcc3e0f29b9e58d9575aef597540088634cd81f30d8d196f078d9faa675"));
+//        System.out.println(decrypt("52680bcc3e0f29b9e58d9575aef59754745c8ceaa132555d272a8fe10d680807"));
+
+        String str = "{\"code\":999999,\"msg\":\"[39000], 处理成功\"}";
 
     }
 }

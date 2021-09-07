@@ -1,6 +1,5 @@
 package com.xiangzi.learncloudproducer.producer;
 
-import com.xiangzi.learncloudproducer.config.RabbitmqConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpException;
@@ -8,11 +7,13 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 @Service
 public class Producer {
+
+    public final String my_demo_exchange = "my_demo_exchange";
+    public final String my_demo_dead_letter_routing_key = "my_demo_dead_letter_routing_key";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
 
@@ -32,6 +33,6 @@ public class Producer {
         LOGGER.info("准备发送消息");
 
         //调用了 convertAndSend 方法时会使用 MessageConvert 进行消息的序列化
-        amqpTemplate.convertAndSend(RabbitmqConfig.my_demo_exchange, RabbitmqConfig.my_demo_dead_letter_routing_key, msg, processor);
+        amqpTemplate.convertAndSend(my_demo_exchange, my_demo_dead_letter_routing_key, msg, processor);
     }
 }

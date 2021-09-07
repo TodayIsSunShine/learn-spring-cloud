@@ -1,4 +1,4 @@
-package com.xiangzi.learncloudproducer.config;
+package com.xiangzi.learncloudconsumer.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -12,8 +12,15 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p></p >
+ *
+ * @author zhangxx
+ * @since 1.0
+ */
 @Configuration
 public class RabbitmqConfig {
+
 
     public static final String my_demo_queue_routing_key = "my_demo_queue_routing_key";
     public static final String my_demo_exchange = "my_demo_exchange";
@@ -54,6 +61,4 @@ public class RabbitmqConfig {
     public Binding delayBinding(@Autowired @Qualifier("myQueue") Queue queue, @Autowired @Qualifier("deadLetterExchange") DirectExchange directExchange) {
         return BindingBuilder.bind(queue).to(directExchange).with(my_demo_queue_routing_key);
     }
-
-
 }
