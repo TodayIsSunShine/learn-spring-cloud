@@ -16,7 +16,7 @@ import java.util.HashSet;
 @Component
 public class DeadLetterQueueConsumer {
 
-    //避免重复消费消息
+    //避免重复消费消息，服务重启后长度为0，线上使用redis或者存入表里
     private static HashSet hashSet = new HashSet();
 
     @RabbitListener(queues = "my_demo_queue") //用来监听队列里面的消息
@@ -29,6 +29,8 @@ public class DeadLetterQueueConsumer {
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } else {
             System.err.println("重复消费了..");
+            //丢弃掉
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
         }
     }
 }
