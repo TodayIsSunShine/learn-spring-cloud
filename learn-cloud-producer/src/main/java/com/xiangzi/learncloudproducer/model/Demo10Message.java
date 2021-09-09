@@ -1,4 +1,4 @@
-package model;
+package com.xiangzi.learncloudproducer.model;
 
 import java.io.Serializable;
 

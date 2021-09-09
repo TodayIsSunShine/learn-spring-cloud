@@ -1,6 +1,6 @@
 package com.xiangzi.learncloudproducer.producer;
 
-import model.Demo10Message;
+import com.xiangzi.learncloudproducer.model.Demo10Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

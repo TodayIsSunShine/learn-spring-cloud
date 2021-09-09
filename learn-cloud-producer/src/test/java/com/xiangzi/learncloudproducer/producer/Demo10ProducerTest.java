@@ -1,11 +1,13 @@
-package com.xiangzi.producer.producer;
+package com.xiangzi.learncloudproducer.producer;
 
-import com.xiangzi.learncloudproducer.producer.Demo10Producer;
-import com.xiangzi.producer.BaseServiceTest;
+import javafx.application.Application;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -15,12 +17,16 @@ import java.util.concurrent.CountDownLatch;
  * @author zhangxx
  * @since 1.0
  */
-public class Demo10ProducerTest extends BaseServiceTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class Demo10ProducerTest{
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private Demo10Producer producer;
+    @Autowired
+    private LoanProducer loanProducer;
 
     @Test
     public void testSyncSend() throws InterruptedException {
@@ -33,5 +39,10 @@ public class Demo10ProducerTest extends BaseServiceTest {
 
         // 阻塞等待，保证消费
         new CountDownLatch(1).await();
+    }
+
+    @Test
+    public void testLoan() {
+        loanProducer.send("i am happy");
     }
 }
